@@ -3,11 +3,11 @@ on:
     branches:
       - master
 
-name: Render README
+name: Render my document
 
 jobs:
   render:
-    name: Render README
+    name: Render my document
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,8 +16,9 @@ jobs:
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+        run: Rscript -e 'rmarkdown::render("my-document.Rmd")'
       - name: Commit results
         run: |
-          git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
+          git add my-document.md
+          git commit -m 'Re-build my-document' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
