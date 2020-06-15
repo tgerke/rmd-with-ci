@@ -27,7 +27,8 @@ Some highly informative text.
 
 ')
 
-cat(skeleton, file = "my-document.Rmd")
+dir.create(here::here("my-document"))
+cat(skeleton, file = here::here("my-document", "my-document.Rmd"))
 ```
 
 The example action to render a generic readme file from

@@ -16,9 +16,9 @@ jobs:
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("my-document.Rmd")'
+        run: Rscript -e 'rmarkdown::render("my-document/my-document.Rmd")'
       - name: Commit results
         run: |
-          git add my-document.md
+          git add my-document/my-document.md
           git commit -m 'Re-build my-document' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
