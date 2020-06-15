@@ -31,9 +31,11 @@ dir.create(here::here("my-document"))
 cat(skeleton, file = here::here("my-document", "my-document.Rmd"))
 ```
 
-The example action to render a generic readme file from
+The quickest way to get a GitHub Actions template for rendering 
+a document is to grab this example action from 
 [r-lib](https://github.com/r-lib/actions/tree/master/examples) 
-was initialized and renamed for editing. 
+which renders generic readme file. The below line initializes the 
+file and renames it for editing. 
 
 ```r
 # create yaml file
@@ -46,7 +48,39 @@ fs::file_move(
 )
 ```
 
+We then edit the `.yaml` in session:
 ```r
 usethis::edit_file('.github/workflows/render-doc.yaml')
+```
+
+You can view the resulting file within the repo, 
+but for ease of reading: 
+```yaml
+on:
+  push:
+    branches:
+      - master
+
+name: Render my document
+
+jobs:
+  render:
+    name: Render my document
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install rmarkdown
+        run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Install tinytex in session (necessary for newer OS X)
+        run: Rscript -e 'tinytex::install_tinytex()'
+      - name: Render my document to all types
+        run: Rscript -e 'rmarkdown::render("my-document/my-document.Rmd", output_format = "all")'
+      - name: Commit results
+        run: |
+          git add my-document/my-document*
+          git commit -m 'Re-build my-document' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
 ```
 
