@@ -2,10 +2,33 @@ Document editing with R Markdown + GitHub Actions
 =====
 
 This repository holds a template for establishing a CI workflow towards collaborative document editing in R Markdown.
-The goal is that edits to a single `.Rmd` file will trigger automatic builds of `.pdf`, `.docx`, `.html`, and `.md` versions of the same document via `rmarkdown`. 
+The goal is that edits to a single `.Rmd` file will trigger automatic builds of `.pdf`, `.docx`, `.html`, and `.md` versions of the same document via [rmarkdown](https://github.com/rstudio/rmarkdown). 
 
 How this was set up
 -----
+
+Let's first create the skeleton of an `.Rmd` document that we wish to render.
+
+```r
+skeleton <- glue::glue('
+---
+title: "My document"
+output: 
+  github_document: default
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+Introduction
+---
+
+Some highly informative text.
+
+')
+
+cat(skeleton, file = "my-document.Rmd")
+```
 
 The example action to render a generic readme file from
 [r-lib](https://github.com/r-lib/actions/tree/master/examples) 
