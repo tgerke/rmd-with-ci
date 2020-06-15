@@ -1,0 +1,13 @@
+---
+title: "My document"
+output: 
+  github_document: default
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+Introduction
+---
+
+Some highly informative text.
