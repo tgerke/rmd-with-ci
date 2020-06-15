@@ -58,8 +58,8 @@ but for ease of reading:
 ```yaml
 on:
   push:
-    branches:
-      - master
+    paths:
+      - my-document/my-document.Rmd
 
 name: Render my document
 
