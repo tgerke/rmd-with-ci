@@ -3,4 +3,4 @@ My document
 
 ## Introduction
 
-Some highly informative text, now with a clause.
+Some highly informative text.
