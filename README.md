@@ -59,7 +59,7 @@ but for ease of reading:
 on:
   push:
     paths:
-      - my-document/my-document.Rmd
+      - docs/my-document.Rmd
 
 name: Render my document
 
@@ -74,14 +74,11 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@v1
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
-      - name: Install tinytex in session (necessary for newer OS X)
-        run: Rscript -e 'tinytex::install_tinytex()'
       - name: Render my document to all types
-        run: Rscript -e 'rmarkdown::render("my-document/my-document.Rmd", output_format = "all")'
+        run: Rscript -e 'rmarkdown::render("docs/my-document.Rmd", output_format = "all")'
       - name: Commit results
         run: |
-          git add my-document/my-document*
+          git add docs/my-document*
           git commit -m 'Re-build my-document' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
 ```
-
