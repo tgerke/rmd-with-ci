@@ -4,6 +4,8 @@ Document editing with R Markdown + GitHub Actions
 This repository holds a template for establishing a CI workflow towards collaborative document editing in R Markdown.
 The goal is that edits to a single `.Rmd` file will trigger automatic builds of `.pdf`, `.docx`, `.html`, and `.md` versions of the same document via [rmarkdown](https://github.com/rstudio/rmarkdown). 
 
+Slides for a talk which describes this workflow are found [here](https://tgerke.github.io/github-actions-with-r/).
+
 How this was set up
 -----
 
